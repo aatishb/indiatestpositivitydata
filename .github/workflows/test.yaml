@@ -1,0 +1,25 @@
+name: Schedule
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Schedule
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Run Script
+        run: |
+          pip install -r requirements.txt
+          python parsedata.py >> log.txt
+      - name: Commit Report
+        continue-on-error: true
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add -A
+          git checkout master
+          git commit -am "Automated Data Update"
+          git push
