@@ -10,7 +10,7 @@ from urllib.error import HTTPError
 # get current date in IST
 IST = pytz.timezone('Asia/Kolkata')
 today = datetime.now(IST)
-currentdate = today.strftime('%d/%m/%Y')
+currentdate = today.isoformat().split('T')[0]
 # https://stackoverflow.com/a/20007730
 ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
 monthname = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
