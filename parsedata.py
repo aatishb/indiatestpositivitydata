@@ -21,7 +21,7 @@ print('checking for new data on', today)
 
 try:
     url = 'https://www.mohfw.gov.in/pdf/10percentDistrictWiseCOVID19Positivity' + date + '.xlsx'
-    df = pd.read_excel(url, skiprows=[0,1,2], header=[0]).fillna(method='ffill')
+    df = pd.read_excel(url, engine = 'openpyxl', skiprows=[0,1,2], header=[0]).fillna(method='ffill')
     df.drop(df.tail(1).index,inplace=True)
     df['Date'] = currentdate
 

@@ -1,3 +1,3 @@
-pandas
-pytz
-xlrd
+pandas == 1.2.4
+pytz == 2021.1
+openpyxl ==  3.0.7
