@@ -31,7 +31,7 @@ try:
     if (prevdate != currentdate):
         df.to_csv("data.csv", columns = ['Date', 'State', 'District', 'Positivity'], header = False, index = False, mode='a')
         print('added data for', currentdate, 'to data.csv')
-        path = '/archive' + url.split('/')[-1]
+        path = 'archive/' + url.split('/')[-1]
         request.urlretrieve(url, path)
         print('saved data for', currentdate, 'to archive folder')
 
