@@ -1,11 +1,11 @@
-name: Schedule
+name: Fetch Data
 on:
   schedule:
-    - cron:  '0 * * * *'
+    - cron:  '0 1-23/4 * * *'
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Schedule
+    name: Fetch Data
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
