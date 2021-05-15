@@ -54,3 +54,6 @@ checking for new data on 2021-05-15 19:01:31.308280+05:30
 already have data for 2021-05-15
 checking for new data on 2021-05-15 23:18:22.626085+05:30
 already have data for 2021-05-15
+checking for new data on 2021-05-16 02:51:57.256270+05:30
+HTTP Error 404: Not Found
+data has not yet been updated for 2021-05-16
