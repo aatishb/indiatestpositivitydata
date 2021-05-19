@@ -13,7 +13,7 @@ We also calculate state-level test positivity rate using the most recent case & 
 - [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv) contains time-series district-level test positivity data in CSV format.
 - [statedata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/statedata.csv) contains time-series state-level test positivity data, weekly confirmed cases, and weekly tests in CSV format.
 
-The date is in ISO format i.e. `YYYY-MM-DD`
+The date is in ISO format i.e. `YYYY-MM-DD`. District-level data is for the 6 day period not including the date on which the data is reported, while state-level data is for the 7 day period including the date on which the data is reported.
 
 ## Data Sources
 - District Data: [Indian Ministry of Health](https://www.mohfw.gov.in/)
