@@ -1,4 +1,4 @@
-# India COVID-19 Test Positivity Data
+## India COVID-19 Test Positivity Data
 ### This project parses & archives daily District-level COVID-19 Test Positivity Rates for India.
 
 The **COVID-19 Test Positivity Rate** is the share of COVID-19 tests that are positive.
@@ -7,7 +7,7 @@ The [Indian Ministry of Health](https://www.mohfw.gov.in/) provides a daily Exce
 
 We also calculate State-level test positivity rate using the most recent case & testing numbers collected by [covid19india.org](https://github.com/covid19india/api). The State-level test positivity rate is computed as a 7 day average using the formula: `test positivity rate (7 day average) = confirmed cases in past week / tests conducted in past week`. Note that there may be some discrepancies between states depending on whether they report the number of samples tested or the number of people tested.
 
-# Data Files
+## Data Files
 
 - The [archive](https://github.com/aatishb/indiatestpositivitydata/tree/main/archive) folder contains archives of each day's xlsx file released by the government
 - [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv) contains time-series District-level test positivity data in CSV format.
@@ -15,7 +15,7 @@ We also calculate State-level test positivity rate using the most recent case & 
 
 The date is in ISO format i.e. `YYYY-MM-DD`
 
-# Data Sources
+## Data Sources
 - District Data: [Indian Ministry of Health](https://www.mohfw.gov.in/)
 - State Data: [covid19india.org](https://github.com/covid19india/api) (manually collected from state health ministries)
  
