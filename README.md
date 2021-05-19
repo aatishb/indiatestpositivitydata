@@ -1,11 +1,13 @@
 ## India COVID-19 Test Positivity Data
-### This project parses & archives daily district-level COVID-19 Test Positivity Rates for India.
+### This repository parses & archives daily district-level COVID-19 Test Positivity Rates for India.
 
 The **COVID-19 Test Positivity Rate** is the share of COVID-19 tests that are positive.
 
-From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been providing a daily Excel file reporting a 6-day average COVID-19 test positivity rate (for districts with a test positivity rate ≥ 10%). These Excel files are available for one day and are not archived by the government. This GitHub  repository automatically runs a script to fetch the daily government data update, parses the data into a CSV file, and archives each Excel file.
+From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been uploading a daily Excel file reporting a 6-day average COVID-19 test positivity rate (for districts with a test positivity rate ≥ 10%). These Excel files are only available for a day and are not archived by the government.
 
-We also calculate state-level test positivity rate using the most recent case & testing numbers collected by [covid19india.org](https://github.com/covid19india/api). The State-level test positivity rate is computed as a 7 day average using the formula: `test positivity rate (7 day average) = confirmed cases in past week / tests conducted in past week`. Note that there may be some discrepancies between states depending on whether they report the number of samples tested or the number of people tested.
+This GitHub  repository automatically runs a script to fetch the daily government data update, parses and appends the data to a CSV file, and archives the Excel file. This allows you to analyze this data as a time-series.
+
+We also calculate the state test positivity rates from the case & test numbers collected by [covid19india.org](https://github.com/covid19india/api). The state-level test positivity rate is computed as follows: `test positivity rate (7 day average) = new confirmed cases in the past week / tests conducted in the past week`. Note that there may be some discrepancies between states depending on whether they report the number of samples tested or the number of people tested.
 
 ## Data Files
 
