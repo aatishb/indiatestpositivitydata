@@ -11,9 +11,9 @@ We also calculate the state test positivity rates from the case & test numbers c
 
 ## Data Files
 
-- The [archive](https://github.com/aatishb/indiatestpositivitydata/tree/main/archive) folder contains archives of each day's xlsx file released by the government
-- [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv) contains time-series test positivity data for districts.
-- [statedata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/statedata.csv) contains time-series test positivity data, weekly confirmed cases, and weekly tests for states & union territories.
+- The [archive](https://github.com/aatishb/indiatestpositivitydata/tree/main/archive) folder contains an archive of the daily Excel files with test positivity data for districts
+- [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv) contains time-series test positivity data for districts in CSV format
+- [statedata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/statedata.csv) contains time-series test positivity data, weekly confirmed cases, and weekly tests for states & union territories in CSV format
 
 The date is in ISO format i.e. `YYYY-MM-DD`. District-level data is for the 6 day period not including the date on which the data is reported, while state-level data is for the 7 day period including the date on which the data is reported.
 
