@@ -13,8 +13,8 @@ jobs:
       - name: Run Script
         run: |
           pip install -r requirements.txt
-          python getdistrictdata.py >> log.txt
-          python getstatedata.py >> log.txt
+          python getdistrictdata.py
+          python getstatedata.py
       - name: Commit Report
         continue-on-error: true
         run: |

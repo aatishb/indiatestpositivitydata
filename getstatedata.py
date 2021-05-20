@@ -13,19 +13,10 @@ def daterange(date1, date2):
     for n in range(int ((date2 - date1).days)+1):
         yield date1 + timedelta(n)
 
-states = ['Andaman and Nicobar Islands', 'Andhra Pradesh',
-       'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh',
-       'Chhattisgarh', 'Dadra and Nagar Haveli and Daman and Diu',
-       'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'India',
-       'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh',
-       'Lakshadweep', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
-       'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry',
-       'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 
-       'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal']
+states = ['Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chandigarh', 'Chhattisgarh', 'Dadra and Nagar Haveli and Daman and Diu', 'Delhi', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'India', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Ladakh', 'Lakshadweep', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Puducherry', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal']
 
 IST = pytz.timezone('Asia/Kolkata')
 today = datetime.now(IST)
-print('checking for new state data on', today)
 
 try:
   cases = pd.read_csv('https://api.covid19india.org/csv/latest/states.csv')
@@ -52,7 +43,6 @@ try:
 
           if (currentstateweeklycases.size == 1 and currentstateweeklytests.size == 1):
               if (currentstateweeklycases.iloc[0] > 0 and currentstateweeklytests.iloc[0] > 0):
-                  #print(state, str(round(100 * currentstateweeklycases.iloc[0] / currentstateweeklytests.iloc[0])) + '%')
                   df = df.append({'Date': datestring,
                              'State': state,
                              'Weekly Cases': round(currentstateweeklycases.iloc[0]),
@@ -60,17 +50,7 @@ try:
                              'Test Positivity Rate': round(currentstateweeklycases.iloc[0] / currentstateweeklytests.iloc[0],3)
                             }, ignore_index=True)
 
-
-  csv = pd.read_csv('statedata.csv', header=0)
-  datachanged = not (csv.round(3) == df.round(3)).all().all()
-  
-  if datachanged:
-    df.to_csv("statedata.csv", columns = ['Date', 'State', 'Weekly Cases', 'Weekly Tests', 'Test Positivity Rate'], header = True, index = False)
-    print('added state data to statedata.csv on', today.date())
-  else:
-    print('no new state data found on', today.date())
+  df.to_csv("statedata.csv", columns = ['Date', 'State', 'Weekly Cases', 'Weekly Tests', 'Test Positivity Rate'], header = True, index = False)
 
 except HTTPError as err:
     print(err)
-    if err.code == 404:
-            print('could not access state data')

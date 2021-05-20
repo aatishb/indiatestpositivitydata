@@ -39,6 +39,7 @@ try:
         print('already have district data for', currentdate)
         
 except HTTPError as err:
-    print(err)
     if err.code == 404:
             print('district data has not yet been updated for', currentdate)
+    else:
+        print(err)
