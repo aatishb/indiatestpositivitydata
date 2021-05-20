@@ -45,7 +45,7 @@ try:
           if (currentstateweeklycases.size == 1 and currentstateweeklytests.size == 1):
               if (currentstateweeklycases.iloc[0] > 0 and currentstateweeklytests.iloc[0] > 0):
                   df = df.append({'Date': datestring,
-                             'State': state,
+                             'State': state.upper(),
                              'Weekly Cases': round(currentstateweeklycases.iloc[0]),
                              'Weekly Tests': round(currentstateweeklytests.iloc[0]),
                              'Test Positivity Rate': round(currentstateweeklycases.iloc[0] / currentstateweeklytests.iloc[0],3)
