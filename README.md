@@ -1,12 +1,12 @@
-## India COVID-19 Test Positivity Data
+## India COVID-19 Test Positivity Rate
 
-This repository parses & archives daily district-level COVID-19 Test Positivity Rates for India. The Test Positivity Rate is the share of tests that are positive.
+This repository parses & archives daily district-level COVID-19 test positivity rates for India. The test positivity rate is the share of Covid tests that are positive.
 
 From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been uploading a daily Excel file that reports the 6-day average COVID-19 test positivity rate (for Indian districts with a test positivity rate ≥ 10%).
 
 This repository automatically fetches the daily government data update, parses the data and appends it to a CSV file, and archives the government data file.
 
-We also calculate the test positivity rates for Indian states & union territories from the data collected by [covid19india.org](https://github.com/covid19india/api). The positivity rate is calculated as follows: `test positivity rate (7 day average) = new confirmed cases in the past week / tests conducted in the past week`. Note that there may be some discrepancies between states depending on whether they report the number of samples tested or the number of people tested.
+We also calculate the test positivity rates for Indian states & union territories using data collected by [covid19india.org](https://github.com/covid19india/api). The positivity rate is calculated as follows: `test positivity rate (7 day average) = new confirmed cases in the past week / tests conducted in the past week`. Note that there may be some discrepancies between states depending on whether they report the number of samples tested or the number of people tested.
 
 ## Data Files
 
