@@ -17,6 +17,7 @@ states = ['Andaman and Nicobar Islands', 'Andhra Pradesh', 'Arunachal Pradesh', 
 
 IST = pytz.timezone('Asia/Kolkata')
 today = datetime.now(IST)
+print('checking for new state data on', today)
 
 try:
   cases = pd.read_csv('https://api.covid19india.org/csv/latest/states.csv')
@@ -27,7 +28,7 @@ try:
 
   df = pd.DataFrame(columns = ['Date' , 'State', 'Weekly Cases' , 'Weekly Tests', 'Test Positivity Rate'])
 
-  for dt in daterange(date(2021, 5, 1), today.date()):
+  for dt in daterange(date(2021, 4, 1), today.date()):
       for state in states:
 
           datestring = dt.strftime("%Y-%m-%d")
@@ -51,6 +52,7 @@ try:
                             }, ignore_index=True)
 
   df.to_csv("statedata.csv", columns = ['Date', 'State', 'Weekly Cases', 'Weekly Tests', 'Test Positivity Rate'], header = True, index = False)
+  print('output state data to file')
 
 except HTTPError as err:
     print(err)
