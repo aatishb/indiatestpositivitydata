@@ -12,11 +12,12 @@ IST = pytz.timezone('Asia/Kolkata')
 today = datetime.now(IST)
 print('checking for new district data on', today)
 
-currentdate = today.date()
 # https://stackoverflow.com/a/20007730
 ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
+
 monthname = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-date = ordinal(currentdate.day) + monthname[currentdate.month - 1]
+date = ordinal(today.day) + monthname[today.month - 1]
+currentdate = str(today.date())
 
 try:
     url = 'https://www.mohfw.gov.in/pdf/10percentDistrictWiseCOVID19Positivity' + date + '.xlsx'
