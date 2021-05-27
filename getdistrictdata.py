@@ -20,17 +20,19 @@ date = ordinal(today.day) + monthname[today.month - 1]
 currentdate = str(today.date())
 
 try:
-    url = 'https://www.mohfw.gov.in/pdf/10percentDistrictWiseCOVID19Positivity' + date + '.xlsx'
-    df = pd.read_excel(url, engine = 'openpyxl', skiprows=[0,1,2], header=[0]).fillna(method='ffill')
-    df = df.rename(columns = {'Positivity': 'Test Positivity Rate'})
-    df.drop(df.tail(1).index,inplace=True)
-    df['Date'] = currentdate
-
+    url = 'https://www.mohfw.gov.in/pdf/COVID19DistrictWisePositivityAnalysis' + date + '.xlsx'
+    df = pd.read_excel(url, engine = 'openpyxl', skiprows=[0,1,2,3], header=[0])
+    over10percent = df[['State','District', 'Positivity']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill')
+    between5and10percent = df[['State.1','District.1', 'Positivity.1']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill').rename(columns={"State.1": "State", "District.1": "District", "Positivity.1": "Positivity"})
+    under5percent = df[['State.2','District.2', 'Positivity.2']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill').rename(columns={"State.2": "State", "District.2": "District", "Positivity.2": "Positivity"})
+    output = pd.concat([over10percent, between5and10percent, under5percent]).sort_values(by=['State', 'District']).rename(columns = {'Positivity': 'Test Positivity Rate'})
+    output['Date'] = currentdate
+    
     csv = pd.read_csv('districtdata.csv', header=0)
     prevdate = csv.iloc[-1,0]
 
     if (prevdate != currentdate):
-        df.to_csv("districtdata.csv", columns = ['Date', 'State', 'District', 'Test Positivity Rate'], header = False, index = False, mode='a')
+        output.to_csv("districtdata.csv", columns = ['Date', 'State', 'District', 'Test Positivity Rate'], header = False, index = False, mode='a')
         print('added district data for', currentdate, 'to districtdata.csv')
         path = 'archive/' + url.split('/')[-1]
         request.urlretrieve(url, path)
