@@ -2,7 +2,7 @@
 
 This repository parses & archives daily district-level COVID-19 test positivity rates for India. The test positivity rate is the share of Covid tests that are positive.
 
-From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been uploading a daily Excel file that reports the 6-day average COVID-19 test positivity rate (for Indian districts with a test positivity rate ≥ 10%).
+From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been uploading a daily Excel file that reports the 6-day average COVID-19 test positivity rate (for Indian districts with a test positivity rate ≥ 10%). From 26th May onwards, this data set has been expanded to include data from all districts.
 
 This repository automatically fetches the daily government data update, parses the data and appends it to a CSV file, and archives the government data file.
 
@@ -22,10 +22,12 @@ The date is in ISO format i.e. `YYYY-MM-DD`. District-level data is for the 6 da
  
 ## Manual Data Updates
 
-The following steps were taken to clean the daily data in [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/data.csv)
+The following steps were taken to clean the daily data in [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv)
 
 - 2021-05-13: Renamed misnamed state 'A' to 'Tamil Nadu'
 
-## Known Data Issues
+## Known Data Issues & Format Changes
 
-The Ministry of Health data does not currently include district-level data for Telangana. This data can be found on the Telangana Department of Health [Media Bulletins](https://covid19.telangana.gov.in/announcements/media-bulletins/).
+Prior to May 26th, the Ministry of Health data did not include district-level data for Telangana. This data can be found on the Telangana Department of Health [Media Bulletins](https://covid19.telangana.gov.in/announcements/media-bulletins/).
+
+On May 26th, the Ministry of Health  changed their data format to include data from all districts (i.e. not just districts with > 10% positivity). We have updated our script to parse this new data format.
