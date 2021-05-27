@@ -1,4 +1,4 @@
-## India COVID-19 Test Positivity Rate
+## India COVID-19 Test Positivity Data
 
 This repository parses & archives daily district-level COVID-19 test positivity rates for India. The test positivity rate is the share of Covid tests that are positive.
 
