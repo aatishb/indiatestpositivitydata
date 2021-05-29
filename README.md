@@ -28,6 +28,8 @@ The following steps were taken to clean the daily data in [districtdata.csv](htt
 
 ## Known Data Issues & Format Changes
 
-Prior to May 26th, the Ministry of Health data did not include district-level data for Telangana. This data can be found on the Telangana Department of Health [Media Bulletins](https://covid19.telangana.gov.in/announcements/media-bulletins/).
+Prior to May 26th, the Ministry of Health only included data from districts with test positivity >= 10%, and did not include district-level data for Telangana.
 
-On May 26th, the Ministry of Health  changed their data format to include data from all districts (i.e. not just districts with > 10% positivity). We have updated our script to parse this new data format.
+- May 26th: source data format changed (includes data from almost all districts)
+- May 27th: source data format changed (added columns for % of testing by RT-PCR and Rapid Antigen)
+- May 29th: souce data format changed (added rows of summary text on top)
