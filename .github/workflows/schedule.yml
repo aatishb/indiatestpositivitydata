@@ -3,9 +3,9 @@ on:
   schedule:
     - cron:  '0 1-23/2 * * *'
 jobs:
-  statedata:
+  fetchstatedata:
     runs-on: ubuntu-latest
-    name: Fetch Data
+    name: Fetch State Data
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -24,9 +24,9 @@ jobs:
           git add -A
           git commit -am "Automatically Updated State Data"
           git push
-  districtdata:
+  fetchdistrictdata:
     runs-on: ubuntu-latest
-    name: Fetch Data
+    name: Fetch District Data
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
