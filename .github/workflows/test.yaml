@@ -1,4 +1,4 @@
-name: Schedule
+name: Manually Test Fetch Data
 on: workflow_dispatch
 jobs:
   fetchstatedata:
