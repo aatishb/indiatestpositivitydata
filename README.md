@@ -18,7 +18,7 @@ The date is in ISO format i.e. `YYYY-MM-DD`. District-level data is for the 6 da
 
 ## Data Sources
 - District Data: [Indian Ministry of Health](https://www.mohfw.gov.in/)
-- State Data: [covid19india.org]
+- State Data: [covid19india.org](https://api.covid19india.org/)
  
 ## Manual Data Updates
 
