@@ -20,39 +20,39 @@ today = datetime.now(IST)
 print('checking for new state data on', today)
 
 try:
-  cases = pd.read_csv('https://api.covid19india.org/csv/latest/states.csv')
-  cases.index = pd.to_datetime(cases['Date'], dayfirst = True)
+    cases = pd.read_csv('https://api.covid19india.org/csv/latest/states.csv')
+    cases.index = pd.to_datetime(cases['Date'], dayfirst = True)
 
-  tests = pd.read_csv('https://api.covid19india.org/csv/latest/statewise_tested_numbers_data.csv')
-  tests.index = pd.to_datetime(tests['Updated On'], dayfirst = True)
+    tests = pd.read_csv('https://api.covid19india.org/csv/latest/statewise_tested_numbers_data.csv')
+    tests.index = pd.to_datetime(tests['Updated On'], dayfirst = True)
 
-  df = pd.DataFrame(columns = ['Date' , 'State', 'Weekly Cases' , 'Weekly Tests', 'Test Positivity Rate'])
+    df = pd.DataFrame(columns = ['Date' , 'State', 'Weekly Cases' , 'Weekly Tests', 'Test Positivity Rate'])
 
-  for dt in daterange(date(2021, 4, 1), today.date()):
-      for state in states:
+    for state in states:
+        statecases = cases[cases['State'] == state]['Confirmed']
+        statetests = tests[tests['State'] == state]['Total Tested']
+        
+        for dt in daterange(date(2021, 4, 1), today.date()):
+        
+            currentdate = dt.strftime("%Y-%m-%d")
+            prevdate = (dt - pd.Timedelta(7, unit='D')).strftime("%Y-%m-%d")
 
-          datestring = dt.strftime("%Y-%m-%d")
-          
-          statecases = cases[cases['State'] == state]['Confirmed']
-          stateweeklycases = statecases - statecases.shift(7)
+            try:
+                stateweeklycases = statecases[statecases.index == currentdate].iloc[0] - statecases[statecases.index == prevdate].iloc[0]
+                stateweeklytests = statetests[statetests.index == currentdate].iloc[0] - statetests[statetests.index == prevdate].iloc[0]
 
-          statetests = tests[tests['State'] == state]['Total Tested']
-          stateweeklytests = statetests - statetests.shift(7)
+                df = df.append({'Date': currentdate,
+                         'State': state.upper(),
+                         'Weekly Cases': round(stateweeklycases),
+                         'Weekly Tests': round(stateweeklytests),
+                         'Test Positivity Rate': round(stateweeklycases / stateweeklytests,3)
+                        }, ignore_index=True)
+            except:
+                pass
 
-          currentstateweeklycases = stateweeklycases[stateweeklycases.index == datestring]
-          currentstateweeklytests = stateweeklytests[stateweeklytests.index == datestring]
-
-          if (currentstateweeklycases.size == 1 and currentstateweeklytests.size == 1):
-              if (currentstateweeklycases.iloc[0] > 0 and currentstateweeklytests.iloc[0] > 0):
-                  df = df.append({'Date': datestring,
-                             'State': state.upper(),
-                             'Weekly Cases': round(currentstateweeklycases.iloc[0]),
-                             'Weekly Tests': round(currentstateweeklytests.iloc[0]),
-                             'Test Positivity Rate': round(currentstateweeklycases.iloc[0] / currentstateweeklytests.iloc[0],3)
-                            }, ignore_index=True)
-
-  df.to_csv("statedata.csv", columns = ['Date', 'State', 'Weekly Cases', 'Weekly Tests', 'Test Positivity Rate'], header = True, index = False)
-  print('output state data to file')
+    df = df.sort_values(by=['Date', 'State'])
+    df.to_csv("statedata.csv", columns = ['Date', 'State', 'Weekly Cases', 'Weekly Tests', 'Test Positivity Rate'], header = True, index = False)
+    print('output state data to file')
 
 except HTTPError as err:
     print(err)
