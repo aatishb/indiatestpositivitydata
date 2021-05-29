@@ -1,9 +1,30 @@
 name: Schedule
 on: workflow_dispatch
 jobs:
-  test:
+  fetchstatedata:
     runs-on: ubuntu-latest
-    name: Schedule
+    name: Fetch State Data
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Run Script
+        run: |
+          pip install -r requirements.txt
+          python getstatedata.py
+      - name: Commit Report
+        continue-on-error: true
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add -A
+          git commit -am "Automatically Updated State Data"
+          git push
+  fetchdistrictdata:
+    runs-on: ubuntu-latest
+    name: Fetch District Data
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -14,12 +35,11 @@ jobs:
         run: |
           pip install -r requirements.txt
           python getdistrictdata.py
-          python getstatedata.py
       - name: Commit Report
         continue-on-error: true
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add -A
-          git commit -am "Automated Data Update"
+          git commit -am "Automatically Updated District Data"
           git push
