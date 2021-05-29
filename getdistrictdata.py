@@ -19,30 +19,53 @@ monthname = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Au
 date = ordinal(today.day) + monthname[today.month - 1]
 currentdate = str(today.date())
 
-try:
-    url = 'https://www.mohfw.gov.in/pdf/COVID19DistrictWisePositivityAnalysis' + date + '.xlsx'
-    df = pd.read_excel(url, engine = 'openpyxl', skiprows=[0,1,2,3], header=[0])
-    over10percent = df[['State','District', 'Positivity']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill')
-    between5and10percent = df[['State.1','District.1', 'Positivity.1']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill').rename(columns={"State.1": "State", "District.1": "District", "Positivity.1": "Positivity"})
-    under5percent = df[['State.2','District.2', 'Positivity.2']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill').rename(columns={"State.2": "State", "District.2": "District", "Positivity.2": "Positivity"})
-    output = pd.concat([over10percent, between5and10percent, under5percent]).sort_values(by=['State', 'District']).rename(columns = {'Positivity': 'Test Positivity Rate'})
-    output['Date'] = currentdate
-    
-    csv = pd.read_csv('districtdata.csv', header=0)
-    prevdate = csv.iloc[-1,0]
+csv = pd.read_csv('districtdata.csv', header=0)
+prevdate = csv.iloc[-1,0]
 
-    if (prevdate != currentdate):
+if (prevdate != currentdate):
+    try:
+        url = 'https://www.mohfw.gov.in/pdf/COVID19DistrictWisePositivityAnalysis' + date + '.xlsx'
+        df = pd.read_excel(url, engine = 'openpyxl')
+
+        # find first row of data and header row
+        firstrow = df[df.isin(['ANDAMAN AND NICOBAR ISLANDS']).any(axis=1)].index[0]
+        headerrow = firstrow - 1
+
+        # set header to header row
+        df.columns = df.iloc[headerrow]
+        # start data from first row of data
+        df = df[df.index >= firstrow]
+
+        # rename duplicate columns
+        columns = []
+        count = {}
+        for c in df.columns:
+            if c in columns:
+                columns.append(c + '.' + str(count[c]))
+                count[c] += 1
+            else:    
+                columns.append(c)
+                count[c] = 1;
+
+        df.columns = columns
+
+        over10percent = df[['State','District', 'Positivity']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill')
+        between5and10percent = df[['State.1','District.1', 'Positivity.1']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill').rename(columns={"State.1": "State", "District.1": "District", "Positivity.1": "Positivity"})
+        under5percent = df[['State.2','District.2', 'Positivity.2']].dropna(thresh=1).iloc[:-1 , :].fillna(method='ffill').rename(columns={"State.2": "State", "District.2": "District", "Positivity.2": "Positivity"})
+        output = pd.concat([over10percent, between5and10percent, under5percent]).sort_values(by=['State', 'District']).rename(columns = {'Positivity': 'Test Positivity Rate'})
+        output['Date'] = currentdate
+    
         output.to_csv("districtdata.csv", columns = ['Date', 'State', 'District', 'Test Positivity Rate'], header = False, index = False, mode='a')
         print('added district data for', currentdate, 'to districtdata.csv')
         path = 'archive/' + url.split('/')[-1]
         request.urlretrieve(url, path)
         print('saved district data for', currentdate, 'to archive folder')
 
-    else:
-        print('already have district data for', currentdate)
-        
-except HTTPError as err:
-    if err.code == 404:
-            print('district data has not yet been updated for', currentdate)
-    else:
-        print(err)
+    except HTTPError as err:
+        if err.code == 404:
+                print('district data has not yet been updated for', currentdate)
+        else:
+            print(err)
+    
+else:
+    print('already have district data for', currentdate)
