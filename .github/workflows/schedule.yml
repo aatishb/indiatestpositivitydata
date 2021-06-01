@@ -1,7 +1,7 @@
 name: Fetch Data
 on:
   schedule:
-    - cron:  '0 1-23/2 * * *'
+    - cron:  '0 * * * *'
 jobs:
   fetchstatedata:
     runs-on: ubuntu-latest
