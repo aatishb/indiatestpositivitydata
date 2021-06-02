@@ -1,4 +1,4 @@
-## India COVID-19 Test Positivity Data
+## India District-Level COVID-19 Test Positivity Data
 
 This repository parses & archives COVID-19 test positivity percent for Indian districts and states. The test positivity is the fraction of Covid tests that are positive.
 
