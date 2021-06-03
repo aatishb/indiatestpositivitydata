@@ -34,12 +34,16 @@ try:
         
         for dt in daterange(date(2021, 4, 1), today.date()):
         
-            currentdate = dt.strftime("%Y-%m-%d")
-            prevdate = (dt - pd.Timedelta(7, unit='D')).strftime("%Y-%m-%d")
+            currentdate = dt.strftime("%Y-%m-%d")            
+
+            # calculate cases & tests in the 7 days prior to the current date
+            # for consistency with district level data
+            t0 = (dt - pd.Timedelta(1, unit='D')).strftime("%Y-%m-%d")
+            t1 = (dt - pd.Timedelta(8, unit='D')).strftime("%Y-%m-%d")
 
             try:
-                stateweeklycases = statecases[statecases.index == currentdate].iloc[0] - statecases[statecases.index == prevdate].iloc[0]
-                stateweeklytests = statetests[statetests.index == currentdate].iloc[0] - statetests[statetests.index == prevdate].iloc[0]
+                stateweeklycases = statecases[statecases.index == t0].iloc[0] - statecases[statecases.index == t1].iloc[0]
+                stateweeklytests = statetests[statetests.index == t0].iloc[0] - statetests[statetests.index == t1].iloc[0]
 
                 df = df.append({'Date': currentdate,
                          'State': state.upper(),
