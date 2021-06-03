@@ -2,7 +2,7 @@
 
 This repository parses & archives COVID-19 test positivity percent for Indian districts and states. The test positivity is the fraction of Covid tests that are positive.
 
-From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been uploading a daily Excel file that reports the 6-day average COVID-19 test positivity for Indian districts with a test positivity ≥ 10%. From 26th May onwards, this data set has been expanded to include data from all districts.
+From 10th May onwards, the [Indian Ministry of Health](https://www.mohfw.gov.in/) has been uploading a daily Excel file that reports the weekly average COVID-19 test positivity for Indian districts with a test positivity ≥ 10%. From 26th May onwards, this data set has been expanded to include data from almost all districts.
 
 This repository automatically fetches the daily government data update, parses the data and appends it to a CSV file, and archives the government data file.
 
@@ -14,7 +14,7 @@ We also calculate the test positivity for Indian states & union territories usin
 - [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv) contains time-series test positivity data for districts
 - [statedata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/statedata.csv) contains time-series test positivity data, weekly confirmed cases, and weekly tests for states & union territories
 
-The date is in ISO format i.e. `YYYY-MM-DD`. Test positivity is calculated as a 1 week average for the 7 days prior to the date on which the data is reported. For example, the test positivity reported on June 8 is calculated from the new cases and new tests on June 1 through June 7.
+The date is in ISO format i.e. `YYYY-MM-DD`. Test positivity is calculated as a 1 week average for the 7 days prior to the date on which the data is reported. For example, the test positivity reported on June 8 is based on the new cases / tests on June 1 through June 7.
 
 ## Data Sources
 - District Data: [Indian Ministry of Health](https://www.mohfw.gov.in/)
