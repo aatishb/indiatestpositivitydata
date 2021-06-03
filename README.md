@@ -14,7 +14,7 @@ We also calculate the test positivity for Indian states & union territories usin
 - [districtdata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/districtdata.csv) contains time-series test positivity data for districts
 - [statedata.csv](https://github.com/aatishb/indiatestpositivitydata/blob/main/statedata.csv) contains time-series test positivity data, weekly confirmed cases, and weekly tests for states & union territories
 
-The date is in ISO format i.e. `YYYY-MM-DD`. District-level data is for the 6 day period preceding the date on which the data is reported, while state-level data is for the 7 day period including the date on which the data is reported.
+The date is in ISO format i.e. `YYYY-MM-DD`. Test positivity is calculated as a 1 week average for the 7 days prior to the date on which the data is reported. For example, the test positivity reported on June 8 is calculated from the new cases and new tests on June 1 through June 7.
 
 ## Data Sources
 - District Data: [Indian Ministry of Health](https://www.mohfw.gov.in/)
