@@ -28,8 +28,10 @@ The following steps were taken to clean the daily data in [districtdata.csv](htt
 
 ## Known Data Issues & Format Changes
 
-Prior to May 26th, the Ministry of Health only included data from districts with test positivity >= 10%, and did not include district-level data for Telangana.
+Prior to May 26th, the Ministry of Health only included data from districts with test positivity >= 10%.
 
-- May 26th: source data format changed (includes data from almost all districts)
-- May 27th: source data format changed (added columns for % of testing by RT-PCR and Rapid Antigen)
-- May 29th: souce data format changed (added rows of summary text on top)
+- May 26th: MoHFW data format changed (includes data from almost all districts)
+- May 27th: MoHFW data format changed (added columns for % of testing by RT-PCR and Rapid Antigen)
+- May 29th: MoHFW data format changed (added rows of summary text on top)
+- June 18th: MoHFW data format changed (positivity no longer includes percent symbol)
+- June 20th: MoHFW data filename changed (from 20thJune to 20june)
