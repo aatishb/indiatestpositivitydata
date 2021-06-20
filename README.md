@@ -34,4 +34,4 @@ Prior to May 26th, the Ministry of Health only included data from districts with
 - May 27th: MoHFW data format changed (added columns for % of testing by RT-PCR and Rapid Antigen)
 - May 29th: MoHFW data format changed (added rows of summary text on top)
 - June 18th: MoHFW data format changed (positivity no longer includes percent symbol)
-- June 20th: MoHFW data filename changed (from 20thJune to 20june)
+- June 20th: MoHFW data filename changed (20june instead of 20thJune)
