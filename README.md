@@ -26,11 +26,11 @@ The following steps were taken to clean the daily data in [districtdata.csv](htt
 
 - 2021-05-13: Renamed misnamed state 'A' to 'Tamil Nadu'
 
-## Known Data Issues & Format Changes
+## Data Format Changes
 
-Prior to May 26th, the Ministry of Health only included data from districts with test positivity >= 10%.
+Prior to May 26th, the Ministry of Health included data only from districts with test positivity >= 10%.
 
-- May 26th: MoHFW data format changed (includes data from almost all districts)
+- May 26th: MoHFW data format changed (includes data from all districts)
 - May 27th: MoHFW data format changed (added columns for % of testing by RT-PCR and Rapid Antigen)
 - May 29th: MoHFW data format changed (added rows of summary text on top)
 - June 18th: MoHFW data format changed (positivity doesn't include percent symbol)
