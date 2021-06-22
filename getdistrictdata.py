@@ -24,7 +24,7 @@ csv = pd.read_csv('districtdata.csv', header=0)
 prevdate = csv.iloc[-1,0]
 
 if (prevdate != currentdate):
-    for date in [date1, date2]:
+    for date in [date1, date2, 'district' + date2]:
         url = 'https://www.mohfw.gov.in/pdf/COVID19DistrictWisePositivityAnalysis' + date + '.xlsx'
         try:
             df = pd.read_excel(url, engine = 'openpyxl')
