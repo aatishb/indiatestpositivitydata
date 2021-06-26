@@ -63,7 +63,7 @@ if (prevdate != currentdate):
             
             output = pd.concat([over10percent, between5and10percent, under5percent]).sort_values(by=['State', 'District']).rename(columns = {'Positivity': 'Test Positivity Rate'})
             output['Date'] = currentdate
-            output.to_csv("districtdata.csv", columns = ['Date', 'State', 'District', 'Test Positivity Rate'], header = False, index = False, mode='a')
+            output.to_csv("districtdata.csv", columns = ['Date', 'State', 'District', 'Test Positivity Rate'], header = False, index = False, mode='a', float_format="%.4f")
             print('added district data for', currentdate, 'to districtdata.csv')
 
             path = 'archive/' + url.split('/')[-1]
